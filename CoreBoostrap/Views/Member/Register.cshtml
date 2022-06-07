@@ -1,0 +1,122 @@
+﻿
+@model CoreBoostrap.Models.Member
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+<style>
+
+    
+</style>
+
+<h1 style="margin:30px 0px 30px 67%">註冊帳號</h1>
+
+<div class="row" style="margin-left: 30%;">
+   
+    <div class="col-md-4" style="margin-left: 40%;">
+    
+        <form asp-action="Register">
+            <img src="~/2022tiger.png" style="width: 400px; height: 400px; " />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label>姓名</label>
+                <input asp-for="MemName" class="form-control" />
+                <span asp-validation-for="MemName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>性別</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="GenderId" id="inlineRadio1" value="1" checked="checked">
+                <label class="form-check-label" for="inlineRadio1">男</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="GenderId" id="inlineRadio2" value="2">
+                <label class="form-check-label" for="inlineRadio2">女</label>
+            </div>
+
+            <div class="form-group">
+                <label>生日</label>
+                <input asp-for="MemBrith" class="form-control" type="date" />
+                <span asp-validation-for="MemBrith" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>身分證字號</label>
+                <input asp-for="MemIdentifyNo" class="form-control" />
+                <span asp-validation-for="MemIdentifyNo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>連絡電話</label>
+                <input asp-for="MemPhone" class="form-control" type="number" />
+                <span asp-validation-for="MemPhone" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>E-Mail</label>
+                <input asp-for="MemEmail" class="form-control" type="email" />
+                <span asp-validation-for="MemEmail" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>密碼</label>
+                <input asp-for="MemPassword" class="form-control" type="password" />
+                <span asp-validation-for="MemPassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label 城市></label>
+                @*<input asp-for="CityId" class="form-control" />
+            <span asp-validation-for="CityId" class="text-danger"></span>*@
+                <div class="form-group col-md-6">
+
+                    <select id="inputState" class="form-control" name="CityId">
+                        <option selected>選擇....</option>
+                        <option value="1">台北市</option>
+                        <option value="2">基隆市</option>
+                        <option value="3">新北市</option>
+                        <option value="4">宜蘭縣</option>
+                        <option value="5">新竹市</option>
+                        <option value="6">新竹縣</option>
+                        <option value="7">桃園市</option>
+                        <option value="8">苗栗縣</option>
+                        <option value="9">台中市</option>
+                        <option value="10">彰化縣</option>
+                        <option value="11">南投縣</option>
+                        <option value="12">嘉義市</option>
+                        <option value="13">嘉義縣</option>
+                        <option value="14">雲林縣</option>
+                        <option value="15">台南市</option>
+                        <option value="16">高雄市</option>
+                        <option value="17">南海諸島</option>
+                        <option value="18">澎湖縣</option>
+                        <option value="19">屏東縣</option>
+                        <option value="20">台東縣</option>
+                        <option value="21">花蓮縣</option>
+                        <option value="22">金門縣</option>
+                        <option value="23">連江縣</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>地址</label>
+                <input asp-for="MemAddress" class="form-control" />
+                <span asp-validation-for="MemAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="申請" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@*<div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+

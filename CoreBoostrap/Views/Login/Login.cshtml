@@ -1,0 +1,120 @@
+﻿@model CoreBoostrap.ViewModels.LoginViewModel
+
+@{
+
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="~/cssLogin/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <!--<link rel="stylesheet" href="~/cssLogin/bootstrap.min.css">-->
+
+    <!-- Style -->
+    <link rel="stylesheet" href="~/cssLogin/style.css">
+
+    <title>Login #7</title>
+</head>
+<body>
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="~/images/undraw_remotely_2j6y.svg" alt="Image" class="img-fluid">
+                </div>
+                <div class="col-md-6 contents">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="mb-4">
+                                <h4>登入</h4>
+                                @*<p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>*@
+                            </div>
+                            <form action="#" method="post" autocomplete="off">
+                                <div class="form-group first">
+                                    <label for="username">帳號</label>
+                                    @*<input asp-for="Account" id="txtemail" type="text" class="form-control mb-1" placeholder="Enter email">*@
+                                    <input asp-for="Account" type="text" class="form-control" id="MemEmail">
+
+                                </div>
+                                <div class="form-group last mb-4">
+                                    <label for="password">密碼</label>
+                                    <input asp-for="Password" type="password" class="form-control" id="MemPassword">
+
+                                </div>
+
+                                <div class="d-flex mb-5 align-items-center">
+                                    <label class="control control--checkbox mb-0">
+                                        <span class="caption">記得我</span>
+                                        <input type="checkbox" checked="checked" />
+                                        <span class="control__indicator"></span>
+                                    </label>
+                                    <span class="ml-auto"><a href="#" class="forgot-pass" data-toggle="modal" data-target="#staticBackdrop">忘記密碼</a></span>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="staticBackdropLabel">忘記密碼</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    前陣子跟同事聊到 ASP.NET MVC 傳資料給 View 是用 ViewBag 好還是 Model 好？　Google 了一下，沒有標準答案，既然這樣就自己來研究好了，我是從使用 ViewBag 或 Model 要付出什麼代價的角度去切入，提供給各位朋友參考。
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                                                    <button type="button" class="btn btn-primary">確認</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <input type="submit" value="登入" class="btn btn-block btn-primary">
+
+                                <div class="d-flex mb-2 align-items-center">
+                                    <span class="d-block text-left my-4 text-muted">&mdash; 其他登入 &mdash;</span>
+                                    <span class="ml-auto"><a  class="d-block text-left my-4 text-muted" asp-controller="Member" asp-action="Register">立即註冊</a></span>
+                                </div>
+
+
+                                <div class="social-login">
+                                    <a href="#" class="facebook">
+
+                                        <span class="icon-facebook mr-3"></span>
+                                    </a>
+                                    <a href="#" class="twitter">
+                                        <span class="icon-twitter mr-3"></span>
+                                    </a>
+                                    <a href="#" class="google">
+                                        <span class="icon-google mr-3"></span>
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/jsLogin/jquery-3.3.1.min.js"></script>
+    <script src="~/jsLogin/popper.min.js"></script>
+    <script src="~/jsLogin/bootstrap.min.js"></script>
+    <script src="~/jsLogin/main.js"></script>
+</body>
+
+</html>

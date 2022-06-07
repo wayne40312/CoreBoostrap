@@ -1,0 +1,100 @@
+﻿@using X.PagedList.Mvc.Core; <!--import to get HTML Helper-->
+@using X.PagedList;
+
+@model IEnumerable<CoreBoostrap.Models.Member>
+
+@Html.PagedListPager(Model, page => Url.Action("Member", "MemberList", new { page }))
+
+@*@Html.PagedListPager((IPagedList)Model, page => Url.Action("MemberList", new { page = page }),
+    new X.PagedList.Mvc.Common.PagedListRenderOptions
+    {
+        DisplayItemSliceAndTotal = true,
+        ContainerDivClasses = new[] { "navigation" },
+        LiElementClasses = new[] { "page-item" },
+        PageClasses = new[] { "page-link" },
+    })*@
+
+
+@{ ViewData["Title"] = "MemberList";
+    Layout = "~/Views/Shared/_Layout1.cshtml"; }
+
+<h1>會員列表</h1>
+
+@*<p>
+        <a asp-action="Create"></a>
+    </p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                姓名
+            </th>
+            <th>
+                性別
+            </th>
+            <th>
+                生日
+            </th>
+            <th>
+                連絡電話
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                城市
+            </th>
+            <th>
+                地址
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.MemName)
+    </td>
+    @*<td>
+            @Html.DisplayFor(modelItem => item.Gender.Gender1)
+        </td>*@
+    <td>
+        @Html.DisplayFor(modelItem => item.MemBrith)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MemPhone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MemEmail)
+    </td>
+    @*<td>
+            @Html.DisplayFor(modelItem => item.City.CityName)
+        </td>*@
+    <td>
+        @Html.DisplayFor(modelItem => item.MemAddress)
+    </td>
+
+    <td>
+        <a class="btn btn-info" href="@Url.Action("ProductEdit", "Product", new { })"><i class="fas fa-pencil-alt"></i>&nbsp;修改</a>
+        <a class="btn btn-danger" href="@Url.Action("ProductEdit", "Product", new { })"><i class="fas fa-pencil-alt"></i>&nbsp;刪除</a>
+    </td>
+
+
+</tr>
+}
+    </tbody>
+</table>
+@*@Html.PagedListPager((IPagedList)Model, x => Url.Action("MemberList", new { page = x }))*@
+@*@Html.X.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
+
+@section Scripts{
+    <script>
+        // Workaround to fix style of text for showing items .. through ..
+        // Problem related to Boostrap 4 according to issue in link below
+        // https://github.com/dncuug/X.PagedList/issues/127
+        $(document).ready(function () {
+            $('ul.pagination > li.disabled > a').addClass('page-link');
+        });</script>
+}
