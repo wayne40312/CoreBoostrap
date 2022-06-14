@@ -1,18 +1,6 @@
-﻿@using X.PagedList.Mvc.Core; <!--import to get HTML Helper-->
-@using X.PagedList;
+﻿
 
 @model IEnumerable<CoreBoostrap.Models.Member>
-
-@Html.PagedListPager(Model, page => Url.Action("Member", "MemberList", new { page }))
-
-@*@Html.PagedListPager((IPagedList)Model, page => Url.Action("MemberList", new { page = page }),
-    new X.PagedList.Mvc.Common.PagedListRenderOptions
-    {
-        DisplayItemSliceAndTotal = true,
-        ContainerDivClasses = new[] { "navigation" },
-        LiElementClasses = new[] { "page-item" },
-        PageClasses = new[] { "page-link" },
-    })*@
 
 
 @{ ViewData["Title"] = "MemberList";
@@ -82,14 +70,25 @@
     </td>
 
 
-</tr>
-}
+</tr>}
     </tbody>
 </table>
+
+  @*分頁
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+</nav>*@
+
 @*@Html.PagedListPager((IPagedList)Model, x => Url.Action("MemberList", new { page = x }))*@
 @*@Html.X.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
 
-@section Scripts{
+@*@section Scripts{
     <script>
         // Workaround to fix style of text for showing items .. through ..
         // Problem related to Boostrap 4 according to issue in link below
@@ -97,4 +96,4 @@
         $(document).ready(function () {
             $('ul.pagination > li.disabled > a').addClass('page-link');
         });</script>
-}
+}*@

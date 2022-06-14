@@ -29,25 +29,18 @@ namespace CoreBoostrap.Controllers
         }
 
         // 登入畫面
-        public IActionResult Login()
-        {
-            if (User.Claims.Any())
-            {
+        public IActionResult Login() {
+            if (User.Claims.Any()) {
                 return RedirectToAction("MemberList", "Member");
             }
             return View();
-            
         }
                
         [HttpPost]
-        public IActionResult Login(LoginViewModel login)
-        {
-
+        public IActionResult Login(LoginViewModel login) {
             Member memUser = _context.Members.FirstOrDefault(e => e.MemEmail.Equals(login.Account) && e.MemPassword.Equals(login.Password));
-            if (memUser != null)
-            {
-                if (memUser.MemEmail == login.Account && memUser.MemPassword == login.Password)
-                {
+            if (memUser != null) {
+                if (memUser.MemEmail == login.Account && memUser.MemPassword == login.Password) {
                     SetCookieAuthentication(memUser);
                     return RedirectToAction("Index", "Home");
                 }
@@ -56,16 +49,13 @@ namespace CoreBoostrap.Controllers
         }
 
         // 把會員物件做成一個身分識別物件，並將資訊藏在Claim(Cookie)
-        private void SetCookieAuthentication(Member mem)
-        {
+        private void SetCookieAuthentication(Member mem) {
            
-            IList<Claim> claims = new List<Claim>()
-            {
+            IList<Claim> claims = new List<Claim>() {
             new Claim(ClaimTypes.Role,Convert.ToString(LoginUserType.Member))
             };
 
-            LoginUser loginUser = new LoginUser
-            {
+            LoginUser loginUser = new LoginUser {
                 Role = LoginUserType.Member,
                 UserID = mem.MemId,
                 UserName = mem.MemName
@@ -77,9 +67,7 @@ namespace CoreBoostrap.Controllers
             ClaimsPrincipal principal = new ClaimsPrincipal(new ClaimsIdentity
                 (claims, CookieAuthenticationDefaults.AuthenticationScheme));
 
-            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal,
-                new AuthenticationProperties
-                {
+            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties {
                     IsPersistent = true,
                     ExpiresUtc = DateTimeOffset.UtcNow.AddDays(1)
                 });

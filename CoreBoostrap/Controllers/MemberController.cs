@@ -1,13 +1,14 @@
-﻿using CoreBoostrap.Models;
+﻿using CoreBoostrap.Commons;
+using CoreBoostrap.Models;
 using CoreBoostrap.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using X.PagedList;
-using X.PagedList.Mvc.Core;
 
 namespace CoreBoostrap.Controllers
 {
@@ -30,12 +31,12 @@ namespace CoreBoostrap.Controllers
 
         // 會員列表
         public IActionResult MemberList(int? page) {
-            var pageNumber = page ?? 1; // if no page is specified, default to the first page (1)
-            int pageSize = 10; // Get 25 students for each requested page.
-            var onePageOfStudents = _context.Members.ToPagedList(pageNumber, pageSize);
-            return View(onePageOfStudents); // Send 25 students to the page.
-            //var memberList = _context.Members;
-            //return View(memberList);
+            //var pageNumber = page ?? 1; // if no page is specified, default to the first page (1)
+            //int pageSize = 10; // Get 25 students for each requested page.
+            //var onePageOfStudents = _context.Members.ToPagedList(pageNumber, pageSize);
+            /*  return View(onePageOfStudents);*/ // Send 25 students to the page.
+            var memberList = _context.Members;
+            return View(memberList);
         }
 
         
@@ -54,5 +55,50 @@ namespace CoreBoostrap.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index", "Home");
         }
+
+        
+        // 修改資料
+        public IActionResult Edit() {
+            int id = getMemId();
+
+            var mem = _context.Members;
+
+            var selMem = mem.FirstOrDefault(x => x.MemId == id);
+
+                if(selMem == null) {
+                    return RedirectToAction("Edit");
+                }
+
+            return View(new MemberViewModel() { MemberOb = selMem });
+        }
+
+
+        // 修改資料
+        [HttpPost]
+        public IActionResult Edit(MemberViewModel m) {
+            getMemId();
+
+            _context.Add(m);
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
+
+        // 取出使用者資訊
+        private int getMemId() {
+            int MemId = 1;
+            if(User.Claims.Any()) {
+
+                // 取出藏有使用者資訊的JSON字串
+                Claim loginUserClaim = User.Claims.FirstOrDefault(x => x.Type.Equals("loginUser"));
+                // 透過Helper.Get 取回存有使用者資訊的物件
+                LoginUser loginUser = CLoginUserHelper.ToCLoginUser(loginUserClaim);
+
+                MemId = loginUser.UserID;
+                string name = loginUser.UserName;
+            }
+            return (MemId);
+        }
+
+       
     }
 }

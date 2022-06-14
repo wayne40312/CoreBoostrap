@@ -17,6 +17,7 @@ namespace CoreBoostrap.Models
             Wishlists = new HashSet<Wishlist>();
         }
 
+        [Key]
         public int MemId { get; set; }
         public string MemIdentifyNo { get; set; }
         public string MemName { get; set; }

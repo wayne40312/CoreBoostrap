@@ -33,5 +33,14 @@ namespace CoreBoostrap.Controllers
         {
             return View();
         }
+
+        public IActionResult IntroduceMySelf()
+        {
+            ViewBag.Error = "這是錯誤訊息";
+            DateTime date = DateTime.Now;
+            ViewBag.Date = date;
+            return View();
+        }
+        
     }
 }

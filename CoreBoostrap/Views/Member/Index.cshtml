@@ -1,0 +1,84 @@
+﻿@model IEnumerable<CoreBoostrap.Models.Member>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MemIdentifyNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemBrith)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemPassword)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemIdentifyNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemBrith)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemPassword)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MemAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City.CityName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender.Gender1)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MemId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MemId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MemId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
