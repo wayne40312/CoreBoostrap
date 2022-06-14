@@ -30,13 +30,12 @@ namespace CoreBoostrap.Controllers
 
 
         // 會員列表
-        public IActionResult MemberList(int? page) {
-            //var pageNumber = page ?? 1; // if no page is specified, default to the first page (1)
-            //int pageSize = 10; // Get 25 students for each requested page.
-            //var onePageOfStudents = _context.Members.ToPagedList(pageNumber, pageSize);
-            /*  return View(onePageOfStudents);*/ // Send 25 students to the page.
+        public IActionResult MemberList(int page = 1, int pageSize = 10) {
+      
             var memberList = _context.Members;
-            return View(memberList);
+            var paded = memberList.ToPagedList(page, pageSize);
+          
+            return View(paded);
         }
 
         
@@ -73,7 +72,7 @@ namespace CoreBoostrap.Controllers
         }
 
 
-        // 修改資料
+        // 修改資料Post
         [HttpPost]
         public IActionResult Edit(MemberViewModel m) {
             getMemId();
@@ -99,6 +98,5 @@ namespace CoreBoostrap.Controllers
             return (MemId);
         }
 
-       
     }
 }
