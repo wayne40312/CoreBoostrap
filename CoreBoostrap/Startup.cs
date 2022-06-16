@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MrHuo.OAuth;
+using MrHuo.OAuth.Github;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +28,10 @@ namespace CoreBoostrap
         {
             services.AddControllersWithViews();
             // 註冊dbcontext
-            services.AddDbContext<SunflowerDBContext>(); 
+            services.AddDbContext<SunflowerDBContext>();
+
+            //注入GitHub授權元件
+            services.AddSingleton(new GithubOAuth(OAuthConfig.LoadFrom(Configuration, "oauth:github")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

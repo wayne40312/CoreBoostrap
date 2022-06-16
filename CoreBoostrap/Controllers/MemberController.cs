@@ -75,11 +75,28 @@ namespace CoreBoostrap.Controllers
         // 修改資料Post
         [HttpPost]
         public IActionResult Edit(MemberViewModel m) {
-            getMemId();
 
-            _context.Add(m);
-            _context.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            var memm = _context.Members;
+            Member mem = memm.FirstOrDefault(c => c.MemId == m.MemID);
+            var a = (from c in _context.Cities
+                     where c.CityName == m.City
+                     select c).FirstOrDefault();
+
+            if (mem != null)
+            {
+                mem.MemIdentifyNo = m.MemIdentifyNo;
+                mem.MemName = m.MemName;
+                mem.MemBrith = m.MemBrith;
+                mem.MemPhone = m.MemPhone;
+                mem.MemEmail = m.MemEmail;
+                mem.MemPassword = m.MemPassword;
+                mem.CityId = a.CityId;
+                mem.MemAddress = m.MemAddress;
+
+
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Edit");
         }
 
         // 取出使用者資訊

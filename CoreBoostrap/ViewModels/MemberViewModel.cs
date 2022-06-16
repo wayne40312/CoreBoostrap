@@ -17,27 +17,41 @@ namespace CoreBoostrap.ViewModels
         public Member MemberOb { get; set; }
 
         [Key]
-        int MemID { get { return this.MemberOb.MemId; } 
+        public int MemID { get { return this.MemberOb.MemId; } 
                     set { this.MemberOb.MemId = value; } }
 
-        string MemName { get { return this.MemberOb.MemName; } 
+        public string MemName { get { return this.MemberOb.MemName; } 
                          set { this.MemberOb.MemName = value; } }
 
-        string MemPhone { get { return this.MemberOb.MemPhone; } 
+        public string MemPhone { get { return this.MemberOb.MemPhone; } 
                           set { this.MemberOb.MemPhone = value; } }
 
-        int GenderId { get { return this.MemberOb.GenderId; } 
+        public int GenderId { get { return this.MemberOb.GenderId; } 
                      set { this.MemberOb.GenderId = value; } }
 
-        string MemEmail { get { return this.MemberOb.MemEmail; } 
+        public string MemEmail { get { return this.MemberOb.MemEmail; } 
                           set { this.MemberOb.MemEmail = value; } }
 
-        int CityId { get { return this.MemberOb.CityId; } 
+        public int CityId { get { return this.MemberOb.CityId; } 
                      set { this.MemberOb.CityId = value; } }
 
-        string MemAddress  { get { return this.MemberOb.MemAddress; } 
-                             set { this.MemberOb.MemAddress = value; } } 
+        public string MemAddress  { get { return this.MemberOb.MemAddress; } 
+                             set { this.MemberOb.MemAddress = value; } }
 
+        public DateTime MemBrith {
+            get { return this.MemberOb.MemBrith; }
+            set { this.MemberOb.MemBrith = value; }
+        }
+
+        public string MemIdentifyNo {
+            get { return this.MemberOb.MemIdentifyNo; }
+            set { this.MemberOb.MemIdentifyNo = value; }
+        }
+
+        public string MemPassword {
+            get { return this.MemberOb.MemPassword; }
+            set { this.MemberOb.MemPassword = value; }
+        }
         public string Gender { get; set; }
 
         public string City { get; set; }

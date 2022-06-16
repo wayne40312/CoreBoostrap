@@ -63,9 +63,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.MemName)
                     </td>
-                    @*<td>
+                    <td>
                             @Html.DisplayFor(modelItem => item.Gender.Gender1)
-                        </td>*@
+                        </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.MemBrith)
                     </td>
@@ -75,15 +75,15 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.MemEmail)
                     </td>
-                    @*<td>
+                    <td>
                             @Html.DisplayFor(modelItem => item.City.CityName)
-                        </td>*@
+                        </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.MemAddress)
                     </td>
 
                     <td>
-                        <a class="btn btn-info" href="@Url.Action("ProductEdit", "Product", new { })"><i class="fas fa-pencil-alt"></i>&nbsp;修改</a>
+                        <a class="btn btn-info" href="@Url.Action("Edit", "Member", new { })"><i class="fas fa-pencil-alt"></i>&nbsp;修改</a>
                         <a class="btn btn-danger" href="@Url.Action("ProductEdit", "Product", new { })"><i class="fas fa-pencil-alt"></i>&nbsp;刪除</a>
                     </td>
 

@@ -1,0 +1,92 @@
+﻿@model CoreBoostrap.ViewModels.ProductViewModel
+
+@{
+    ViewData["Title"] = "CreateProduct";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+<style>
+    .card-registration .select-input.form-control[readonly]:not([disabled]) {
+        font-size: 1rem;
+        line-height: 2.15;
+        padding-left: .75em;
+        padding-right: .75em;
+    }
+
+    .card-registration .select-arrow {
+        top: 13px;
+    }
+    .form-control {
+        display: block;
+        width: 89%;
+    }
+</style>
+
+<section class="h-100 bg-dark">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+                <div class="card card-registration my-4">
+                    <div class="row g-0" style="margin-left:50px;">
+                        <div class="col-xl-6 d-none d-xl-block" style="margin-top:auto; margin-bottom:auto;">
+                            <img id="docimg" width="450" height="450" />
+                            <span><input type="file" name="photo" class="form-control" onchange="openFile(event)" /></span>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card-body p-md-5 text-black">
+                                <h3 class="mb-5 text-uppercase">商品上架</h3>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <input asp-for="ProductName" class="form-control" />
+                                            <label class="form-label" for="form3Example1m">產品名稱</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <select asp-for="ProductBrandId" class="form-control" asp-items="ViewBag.ProductBrandId"></select>
+                                            <label class="form-label" for="form3Example1n">產品品牌</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input asp-for="ProductDescription" class="form-control" />
+                                    <label class="form-label" for="form3Example8">產品描述</label>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <input asp-for="UnitPrice" class="form-control" />
+                                            <label class="form-label" for="form3Example1m">價格</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline">
+                                            <input asp-for="InStock" class="form-control" />
+                                            <label class="form-label" for="form3Example1n">庫存</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input asp-for="ShelfDate" class="form-control" />
+                                    <label class="form-label" for="form3Example9">上架時間</label>
+                                </div>
+
+                                <div class="d-flex justify-content-end pt-3" style="margin-right:auto">
+                                    <button type="button" class="btn btn-warning btn-lg ms-2">註冊</button>
+                                    <button type="button" class="btn btn-light btn-lg">全部清除</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

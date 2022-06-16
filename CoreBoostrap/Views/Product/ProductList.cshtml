@@ -1,0 +1,153 @@
+﻿@model IEnumerable<CoreBoostrap.ViewModels.ProductViewModel>
+@using X.PagedList
+@using X.PagedList.Mvc.Bootstrap4.Core
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common;
+@{
+
+}
+@{
+    ViewData["Title"] = "ProductList";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<style>
+    /* .pagination {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }*/
+
+    .table {
+        width: 95%;
+        margin: auto;
+    }
+</style>
+
+
+<h1 style="text-align:center; padding-top:15px;">產品列表</h1>
+
+<p>
+    <button asp-action="CreateProduct" type="button" class="btn btn-info btn pull-right" style="">新增商品</button>
+</p>
+<table class="table">
+    <thead >
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductBrandName)
+            </th>
+            <th width="50%">
+                @Html.DisplayNameFor(model => model.ProductDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitPrice)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.InStock)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.ShelfDate)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.ImagePath)
+            </th>
+
+            @*<th>
+                    @Html.DisplayNameFor(model => model.ProductCatName)
+                </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{int i = 0;
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductBrandName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnitPrice)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.InStock)
+                        </td>*@
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.ShelfDate)
+                        </td>*@
+                    <td>
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#Model_@i">
+                            檢視圖片
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="Model_@i" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header" style="text-align:center">
+                                        <h5 class="modal-title" id="exampleModalLabel">商品圖</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <img src="~/img/shopping-img/prod-img/@item.ImagePath" style="width:300px;height:370px;" />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.ProductCatName)
+                        </td>*@
+                    <td>
+                        <a class="btn btn-azure" href="@Url.Action("ProductEdit", "Product", new { id = item.ProductId })"><i class="fas fa-pencil-alt"></i>&nbsp;修改</a>
+                    </td>
+
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<div style="padding-left:40% ">
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("ProductList", new { page }), Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
+</div>
+<script>
+    function getImage() {
+        var file = document.querySelector("input[type=file]").files[0];
+
+        var reader = new FileReader();
+
+        let dataURI;
+
+        reader.addEventListener(
+            "load",
+            function () {
+                dataURI = reader.result;
+
+                const img = document.createElement("img");
+                img.src = dataURI;
+                editorContent.appendChild(img);
+            },
+            false
+        );
+
+        if (file) {
+            console.log("s");
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
