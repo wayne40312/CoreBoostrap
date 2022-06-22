@@ -54,13 +54,6 @@ namespace CoreBoostrap.Controllers
             var memberList = _context.Members;
             var paded = memberList.ToPagedList(page, pageSize);
 
-
-            //var aa = from c in _context.Members
-            //         from o in _context.Cities
-            //         select new { c.MemName, c.MemEmail, c.MemBrith, o.CityName };
-
-            //var paded = aa.ToPagedList(page, pageSize);
-
             return View(paded);
         }
 
@@ -68,7 +61,7 @@ namespace CoreBoostrap.Controllers
         // 註冊帳號
         public IActionResult Register() {
             //ViewBag.CityId = _context.Cities;
-
+            string aa = "123";
             return View();
         }
 
