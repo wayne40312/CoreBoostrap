@@ -145,18 +145,20 @@
                                         </li>
 
                                         @*<li class="nav-item dropdown">
-                                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Services <i class="fa fa-angle-down"></i></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="services.html">Services All</a></li>
-                                                <li><a href="service-single.html">Services Single</a></li>
-                                            </ul>
-                                        </li>*@
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Services <i class="fa fa-angle-down"></i></a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="services.html">Services All</a></li>
+                <li><a href="service-single.html">Services Single</a></li>
+            </ul>
+        </li>*@
 
                                         <li class="nav-item dropdown">
-                                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">特色<i class="fa fa-angle-down"></i></a>
+                                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">檔案下載<i class="fa fa-angle-down"></i></a>
                                             <ul class="dropdown-menu" role="menu">
                                                 <li><a href="typography.html">Typography</a></li>
-                                                <li><a href="404.html">404</a></li>
+                                                <li>
+                                                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Error">404頁面</a>
+                                                </li>
                                                 <li class="dropdown-submenu">
                                                     <a href="#!" class="dropdown-toggle" data-toggle="dropdown">Parent Menu</a>
                                                     <ul class="dropdown-menu">
@@ -169,13 +171,13 @@
                                         </li>
 
                                         @*<li class="nav-item dropdown">
-                                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">News <i class="fa fa-angle-down"></i></a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="news-left-sidebar.html">News Left Sidebar</a></li>
-                                                <li><a href="news-right-sidebar.html">News Right Sidebar</a></li>
-                                                <li><a href="news-single.html">News Single</a></li>
-                                            </ul>
-                                        </li>*@
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">News <i class="fa fa-angle-down"></i></a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="news-left-sidebar.html">News Left Sidebar</a></li>
+                <li><a href="news-right-sidebar.html">News Right Sidebar</a></li>
+                <li><a href="news-single.html">News Single</a></li>
+            </ul>
+        </li>*@
 
                                         @*<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>*@
 
@@ -183,6 +185,7 @@
                                         <li class="header-get-a-quote">
                                             <a class="btn btn-primary" asp-area="" asp-controller="Login" asp-action="Login">登入/註冊</a>
                                         </li>
+                                       
                                         @*@loginUser.UserName*@
 
                                     </ul>
@@ -280,22 +283,23 @@
                         </div>
 
                         @*<div class="col-md-12">
-                            <div class="footer-menu text-center">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="team.html">Our people</a></li>
-                                    <li><a href="faq.html">Faq</a></li>
-                                    <li><a href="news-left-sidebar.html">Blog</a></li>
-                                    <li><a href="pricing.html">Pricing</a></li>
-                                </ul>
-                            </div>
-                        </div>*@
+                <div class="footer-menu text-center">
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="team.html">Our people</a></li>
+                        <li><a href="faq.html">Faq</a></li>
+                        <li><a href="news-left-sidebar.html">Blog</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                    </ul>
+                </div>
+            </div>*@
                     </div>
 
                     <div id="back-to-top" data-spy="affix" data-offset-top="10" class="back-to-top position-fixed">
-                        <button class="btn btn-primary" title="Back to Top">
-                            <i class="fa fa-angle-double-up"></i>
-                        </button>
+                        @*<button class="btn btn-primary" title="Back to Top">*@
+                        <img src="~/images/icons8-rocket-64.png" />
+                        @*<i class="fa fa-angle-double-up"></i>*@
+                        @*</button>*@
                     </div>
 
                 </div><!-- Container end -->

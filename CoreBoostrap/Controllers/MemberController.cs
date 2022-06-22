@@ -1,6 +1,7 @@
 ﻿using CoreBoostrap.Commons;
 using CoreBoostrap.Models;
 using CoreBoostrap.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -24,6 +25,24 @@ namespace CoreBoostrap.Controllers
             _context = context;
         }
 
+        // 取得會員編號
+        [Authorize]
+        private int getMemId()
+        {
+            int MemId = 1;
+            if (User.Claims.Any())
+            {
+                //取出藏有使用者資訊的Json字串
+                Claim loginUserClaim = User.Claims.FirstOrDefault(x => x.Type.Equals("loginUser"));
+                //透過Helper.Get取回存有使用者資訊的物件
+                LoginUser loginUser = CLoginUserHelper.ToCLoginUser(loginUserClaim);
+                //LoginUserType type = loginUser.Role;
+                MemId = loginUser.UserID;
+                string name = loginUser.UserName;
+            }
+            return (MemId);
+        }
+
         public IActionResult Index() {
             return View();
         }
@@ -31,10 +50,17 @@ namespace CoreBoostrap.Controllers
 
         // 會員列表
         public IActionResult MemberList(int page = 1, int pageSize = 10) {
-      
+
             var memberList = _context.Members;
             var paded = memberList.ToPagedList(page, pageSize);
-          
+
+
+            //var aa = from c in _context.Members
+            //         from o in _context.Cities
+            //         select new { c.MemName, c.MemEmail, c.MemBrith, o.CityName };
+
+            //var paded = aa.ToPagedList(page, pageSize);
+
             return View(paded);
         }
 
@@ -77,13 +103,14 @@ namespace CoreBoostrap.Controllers
         public IActionResult Edit(MemberViewModel m) {
 
             var memm = _context.Members;
+
             Member mem = memm.FirstOrDefault(c => c.MemId == m.MemID);
+
             var a = (from c in _context.Cities
                      where c.CityName == m.City
                      select c).FirstOrDefault();
 
-            if (mem != null)
-            {
+            if (mem != null) {
                 mem.MemIdentifyNo = m.MemIdentifyNo;
                 mem.MemName = m.MemName;
                 mem.MemBrith = m.MemBrith;
@@ -93,27 +120,29 @@ namespace CoreBoostrap.Controllers
                 mem.CityId = a.CityId;
                 mem.MemAddress = m.MemAddress;
 
-
                 _context.SaveChanges();
             }
             return RedirectToAction("Edit");
         }
 
-        // 取出使用者資訊
-        private int getMemId() {
-            int MemId = 1;
-            if(User.Claims.Any()) {
-
-                // 取出藏有使用者資訊的JSON字串
-                Claim loginUserClaim = User.Claims.FirstOrDefault(x => x.Type.Equals("loginUser"));
-                // 透過Helper.Get 取回存有使用者資訊的物件
-                LoginUser loginUser = CLoginUserHelper.ToCLoginUser(loginUserClaim);
-
-                MemId = loginUser.UserID;
-                string name = loginUser.UserName;
-            }
-            return (MemId);
+        public IActionResult pullGender() {
+            int GenderId = getMemId();
+            var datas = (from c in _context.Members
+                         select new
+                         {
+                             GenderId = c.Gender.Gender1
+                         }).Distinct();
+            return Json(datas);
         }
 
+        public IActionResult pullCity() {
+            int CityID = getMemId();
+            var datas = (from c in _context.Cities
+                         select new
+                         {
+                             CityID = c.CityName
+                         }).Distinct();
+            return Json(datas);
+        }
     }
 }

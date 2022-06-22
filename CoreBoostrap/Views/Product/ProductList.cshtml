@@ -28,7 +28,10 @@
 <h1 style="text-align:center; padding-top:15px;">產品列表</h1>
 
 <p>
-    <button asp-action="CreateProduct" type="button" class="btn btn-info btn pull-right" style="">新增商品</button>
+    @*<button asp-action="CreateProduct" type="button" class="btn btn-info btn pull-right" style="">新增商品</button>
+        <button href='@Url.Action("Product", "CreateProduct")' class="btn btn-info btn pull-right">新增商品</button>*@
+    <a class="btn btn-info btn pull-right" href="/Product/CreateProduct">新增商品</a>
+    @*@Html.ActionLink("新增商品", "CreateProduct")*@
 </p>
 <table class="table">
     <thead >

@@ -1,0 +1,81 @@
+﻿@model CoreBoostrap.ViewModels.ProductViewModel
+
+@{
+    ViewData["Title"] = "ProductEdit";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<style>
+    .card-registration .select-input.form-control[readonly]:not([disabled]) {
+        font-size: 1rem;
+        line-height: 2.15;
+        padding-left: .75em;
+        padding-right: .75em;
+    }
+
+    .card-registration .select-arrow {
+        top: 13px;
+    }
+
+    .form-control {
+        display: block;
+        width: 89%;
+    }
+</style>
+
+<h1>編輯產品</h1>
+<hr />
+<div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-md-4">
+        <form asp-action="ProductEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProductId" />
+
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label"></label>
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductBrandId" class="control-label"></label>
+                <select asp-for="ProductBrandId" class="form-control" asp-items="ViewBag.ProductBrandId"></select>
+                <span asp-validation-for="ProductBrandId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <label asp-for="ProductCatId" class="control-label"></label>
+            <select asp-for="ProductCatId" class="form-control" asp-items="ViewBag.ProductCatId"></select>
+            <span asp-validation-for="ProductCatId" class="text-danger"></span>
+        </div>
+
+
+            <div class="form-group">
+                <label asp-for="ProductDescription" class="control-label"></label>
+                <input asp-for="ProductDescription" class="form-control" />
+                <span asp-validation-for="ProductDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitPrice" class="control-label"></label>
+                <input asp-for="UnitPrice" class="form-control" />
+                <span asp-validation-for="UnitPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InStock" class="control-label"></label>
+                <input asp-for="InStock" class="form-control" />
+                <span asp-validation-for="InStock" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="ShelfDate" class="control-label"></label>
+                <input asp-for="ShelfDate" class="form-control" />
+                <span asp-validation-for="ShelfDate" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="ImagePath" class="control-label"></label>
+                <input asp-for="ImagePath" class="form-control" />
+                <span asp-validation-for="ImagePath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="儲存變更" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
